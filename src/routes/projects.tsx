@@ -40,7 +40,25 @@ export const Route = createFileRoute("/projects")({
   }),
 });
 
+const projectFolderImages = [
+  "/project/img4.png",
+  "/project/img5.png",
+  "/project/img6.png",
+];
+
+const projectVideos = ["/project/video1.mp4", "/project/video2.mp4", "/project/video3.mp4", "/project/video4.mp4"];
+
 const projects = [
+  ...projectFolderImages.map((img, index) => {
+    const shortTitles = ["Modern Villa", "Garden View", "Facade Design", "Luxury Exterior", "Contemporary Home", "Street View"];
+
+    return {
+      img,
+      title: shortTitles[index] ?? `Project ${index + 1}`,
+      location: "Pakistan",
+      type: "Residential",
+    };
+  }),
   { img: wa01, title: "3590 Crystal", location: "Bahria Orchard", type: "Residential" },
   { img: wa02, title: "969 Tulip Ex", location: "Bahria Town", type: "Grey Structure" },
   { img: wa03, title: "1923 Tulip Ex", location: "Bahria Town", type: "Grey Structure" },
@@ -69,6 +87,15 @@ const projects = [
 ];
 
 function ProjectsPage() {
+  const videoProjects = projectVideos.map((video, index) => ({
+    img: video,
+    title: `Project Walkthrough ${index + 1}`,
+    location: "Pakistan",
+    type: "Video",
+  }));
+
+  const displayProjects = [...videoProjects, ...projects];
+
   return (
     <div>
       <PageHero
@@ -81,10 +108,14 @@ function ProjectsPage() {
 
       <section className="mx-auto mt-16 mb-24 w-[min(1200px,calc(100%-2rem))]">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
+          {displayProjects.map((p) => (
             <article key={p.title} className="shine-box group overflow-hidden rounded-2xl border border-border bg-card">
               <div className="relative h-64 overflow-hidden bg-primary">
-                <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105" />
+                {p.type === "Video" ? (
+                  <video src={p.img} controls autoPlay muted loop playsInline className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105" />
+                )}
                 <span className="absolute right-3 top-3 rounded-sm bg-accent/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent-foreground">{p.type}</span>
               </div>
               <div className="p-5">

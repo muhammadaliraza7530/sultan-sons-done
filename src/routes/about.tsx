@@ -35,7 +35,7 @@ function AboutPage() {
 
       <section className="mx-auto mt-20 w-[min(1200px,calc(100%-2rem))]">
         <div className="grid gap-3 sm:grid-cols-3 sm:gap-5">
-          {[["100+", "Projects Delivered"], ["10", "Years Experience"], ["50+", "Happy Clients"]].map(([n, l]) => (
+          {[["120+", "Projects Delivered"], ["10", "Years Experience"], ["100%", "Client Satisfaction"]].map(([n, l]) => (
             <div key={l} className="shine-box relative overflow-hidden rounded-2xl border border-border bg-card px-6 py-7">
               <div className="font-display text-4xl font-bold tracking-tight"><CountOnView value={n} /></div>
               <div className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{l}</div>

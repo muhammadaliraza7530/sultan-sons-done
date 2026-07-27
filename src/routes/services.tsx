@@ -37,6 +37,7 @@ function ServicesPage() {
         eyebrow="Our Services"
         title="Everything from concept"
         accent="to handover."
+        brandName="Sultan Sons"
         desc="Six disciplines. One accountable team. Delivered across Pakistan with a decade of proven craftsmanship."
         image={villaInterior}
       />

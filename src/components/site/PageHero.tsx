@@ -6,16 +6,25 @@ export function PageHero({
   accent,
   desc,
   image,
+  brandName,
 }: {
   eyebrow: string;
   title: string;
   accent?: string;
   desc?: string;
   image: string;
+  brandName?: string;
 }) {
   return (
     <section className="shine-box relative -mt-[88px] flex min-h-[70svh] items-end overflow-hidden bg-primary text-primary-foreground">
       <img src={image} alt="" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover animate-slow-pan" />
+      {/** Brand badge (optional) */}
+      {brandName && (
+        <div aria-hidden className="absolute left-5 top-5 flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 backdrop-blur-sm ring-1 ring-white/15">
+          <span className="h-1 w-1 rounded-full bg-accent" />
+          <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/90">{brandName}</span>
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40" />
       <div className="relative mx-auto w-[min(1200px,calc(100%-2rem))] pt-40 pb-16 sm:pb-20">
         <div className="flex items-center gap-3">

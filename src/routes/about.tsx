@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Target, Eye, Gem } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { BrandSection } from "@/components/site/BrandSection";
+import { TeamSection } from "@/components/site/TeamSection";
 const ceoPortrait = "/ceo-portrait.jpg";
 const villaDusk = "/villa-dusk.jpg";
 import { CountOnView } from "@/components/site/CountUpStat";
@@ -26,6 +28,7 @@ function AboutPage() {
         eyebrow="About Us"
         title="Building trust,"
         accent="one home at a time."
+        brandName="Sultan Sons"
         desc="Sultan Sons Estate & Builders is a full-service construction and real-estate firm delivering premium residences and commercial spaces across Pakistan for over a decade."
         image={villaDusk}
       />
@@ -89,6 +92,8 @@ function AboutPage() {
           </Link>
         </div>
       </section>
+      <TeamSection />
+      <BrandSection />
     </div>
   );
 }

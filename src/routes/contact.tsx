@@ -35,7 +35,7 @@ function ContactPage() {
             { Icon: Phone, label: "Call Us", value: "0304 4190190 · 0304 2828284", href: "tel:+923044190190" },
             { Icon: MessageCircle, label: "WhatsApp", value: "Chat with our team", href: WHATSAPP, external: true },
             { Icon: Mail, label: "Email", value: "sultansonseb@gmail.com", href: "mailto:sultansonseb@gmail.com" },
-            { Icon: MapPin, label: "Office", value: "Sultan Sons Estate & Builders, Pakistan" },
+            { Icon: MapPin, label: "Office", value: "09,Jasmine, 1st Roundabout, Park View City Lahore" },
           ].map(({ Icon, label, value, href, external }) => {
             const inner = (
               <div className="shine-box flex items-start gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-accent/60">

@@ -26,6 +26,8 @@ const realP7 = "/real-project-7.jpg";
 import { CountOnView } from "@/components/site/CountUpStat";
 import { MovingGallery } from "@/components/site/MovingGallery";
 import { WhyChooseCarousel } from "@/components/site/WhyChooseCarousel";
+import { BrandSection } from "@/components/site/BrandSection";
+import { TeamSection } from "@/components/site/TeamSection";
 
 const WHATSAPP = "https://wa.me/923044190190";
 
@@ -142,6 +144,10 @@ function Index() {
         </div>
 
         <div className="relative mx-auto w-[min(1200px,calc(100%-2rem))] pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
+            <div aria-hidden className="absolute left-5 top-5 flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 backdrop-blur-sm ring-1 ring-white/15">
+              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/90">Sultan Sons</span>
+            </div>
           {heroSlides.map((s, i) => (
             <div
               key={s.img}
@@ -450,7 +456,7 @@ function Index() {
               <ul className="space-y-4 text-sm text-primary-foreground/80">
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  Sultan Sons Estate &amp; Builders, Pakistan
+09,Jasmine, 1st Roundabout, Park View City Lahore
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -471,6 +477,8 @@ function Index() {
           </div>
         </div>
       </section>
+      <TeamSection />
+      <BrandSection />
     </div>
   );
 }

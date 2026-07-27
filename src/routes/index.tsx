@@ -201,7 +201,7 @@ function Index() {
       {/* Stats */}
       <section className="relative z-10 mx-auto -mt-14 w-[min(1200px,calc(100%-2rem))] sm:-mt-20">
         <div className="grid grid-cols-3 gap-3 sm:gap-5">
-          {[["100+", "Projects Delivered"], ["10", "Years Experience"], ["50+", "Happy Clients"]].map(([n, l]) => (
+          {[["120+", "Projects Delivered"], ["10", "Years Experience"], ["100%", "Client Satisfaction"]].map(([n, l]) => (
             <div key={l} className="shine-box group relative overflow-hidden rounded-2xl border border-border bg-card px-4 py-5 shadow-[0_20px_45px_-20px_rgba(0,0,0,0.6)] transition-all hover:-translate-y-0.5 hover:border-accent/60 sm:rounded-3xl sm:px-7 sm:py-8">
               <span className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-accent/20 blur-2xl opacity-60 group-hover:opacity-100" />
               <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />

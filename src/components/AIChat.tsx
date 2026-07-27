@@ -64,7 +64,7 @@ export function AIChat() {
       <button
         aria-label="Open AI assistant"
         onClick={() => setOpen((o) => !o)}
-        className="group fixed bottom-24 right-5 z-[200] flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/70 text-accent-foreground ring-2 ring-accent/40 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition-transform hover:scale-110 sm:bottom-28 sm:right-6"
+        className="group fixed bottom-24 right-5 z-[200] flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/70 text-accent-foreground ring-2 ring-accent/40 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] hidden transition-transform hover:scale-110 sm:bottom-28 sm:right-6"
       >
         {!open && (
           <span

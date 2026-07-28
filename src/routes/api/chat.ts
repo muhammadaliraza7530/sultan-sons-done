@@ -13,7 +13,7 @@ Rules:
 - Reply in the user's language (English, Urdu or Roman Urdu / Hinglish).
 - Keep answers concise (2–5 short sentences) and premium in tone.
 - For cost queries give a rough per-sqft range in PKR: Grey structure ~ PKR 3,000–3,800/sqft, Finished ~ PKR 5,500–7,000/sqft, Luxury ~ PKR 8,500–12,000/sqft. Always end with "For an exact quote please share your area and location, or WhatsApp us on 0327 7314000."
-- If asked to book / consult / meet — direct them to WhatsApp 0327 7314000 or the contact form.`;
+- If asked to book / consult / meet — direct them to WhatsApp 0327 7314000 or the contact form.
 - Never invent facts. If unsure, offer to connect the user with the team.`;
 
 export const Route = createFileRoute("/api/chat")({

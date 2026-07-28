@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Phone, Mail } from "lucide-react";
 
 const logoAsset = "/logo.jpg";
-const WHATSAPP = "https://wa.me/923044190190";
+const WHATSAPP = "https://wa.me/923277314000";
 const logo = logoAsset;
 
 export function Footer() {
@@ -44,7 +44,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 shrink-0 text-accent" />
-              <a href="tel:+923044190190" className="hover:text-white">0304 4190190</a>
+              <a href="tel:+923277314000" className="hover:text-white">0327 7314000</a>
               <span className="text-white/40">·</span>
               <a href="tel:+923042828284" className="hover:text-white">0304 2828284</a>
             </li>

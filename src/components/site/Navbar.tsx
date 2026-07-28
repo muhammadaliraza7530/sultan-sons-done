@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, MessageCircle, Phone, X } from "lucide-react";
 const logoAsset = "/logo.jpg";
-const WHATSAPP = "https://wa.me/923044190190";
+const WHATSAPP = "https://wa.me/923277314000";
 const logo = logoAsset;
 
 const navLinks: { label: string; to: string }[] = [

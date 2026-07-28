@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 const villaDha = "/villa-dha-1.jpg";
 const villaSpanish = "/villa-spanish-bahria.jpg";
@@ -44,17 +44,54 @@ const projectFolderImages = [
   "/project/img4.png",
   "/project/img5.png",
   "/project/img6.png",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.07 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.08 AM (1).jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.08 AM (2).jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.08 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.09 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.02.10 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.10 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.11 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.13 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.14 AM.jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.15 AM (1).jpeg",
+  "/newProjectImages/WhatsApp Image 2026-07-28 at 11.07.15 AM.jpeg",
 ];
 
-const projectVideos = ["/project/video1.mp4", "/project/video2.mp4", "/project/video3.mp4", "/project/video4.mp4"];
+const projectVideos = [
+  "/project/video1.mp4",
+  "/project/video2.mp4",
+  "/project/video3.mp4",
+  "/project/video4.mp4",
+  "/newProjectImages/WhatsApp%20Video%202026-07-28%20at%2011.07.16%20AM%20(1).mp4",
+  "/newProjectImages/WhatsApp%202026-07-28%20at%2011.07.16%20AM.mp4",
+  "/newProjectImages/WhatsApp%20Video%202026-07-28%20at%2011.07.17%20AM.mp4",
+  "/newProjectImages/WhatsApp%20Video%202026-07-28%20at%2011.07.18%20AM.mp4",
+];
 
 const projects = [
   ...projectFolderImages.map((img, index) => {
-    const shortTitles = ["Modern Villa", "Garden View", "Facade Design", "Luxury Exterior", "Contemporary Home", "Street View"];
+    const shortTitles = [
+      "Harbor View Residence",
+      "Cedar Ridge Villa",
+      "Sunset Terrace",
+      "Maple Lane Home",
+      "Eden Court",
+      "Palmetto House",
+      "Stonewater Estate",
+      "Willow Grove",
+      "Oakfield Manor",
+      "Azure Heights",
+      "Golden Horizon",
+      "Serene Pavilion",
+      "Pearl Avenue",
+      "Twilight Residence",
+      "Marina Loft",
+    ];
 
     return {
       img,
-      title: shortTitles[index] ?? `Project ${index + 1}`,
+      title: shortTitles[index] ?? "Signature Residence",
       location: "Pakistan",
       type: "Residential",
     };
@@ -87,9 +124,20 @@ const projects = [
 ];
 
 function ProjectsPage() {
+  const videoTitles = [
+    "Walkthrough - Crystal Design",
+    "Walkthrough - Tulip Showcase",
+    "Walkthrough - Spanish Estate",
+    "Walkthrough - Platinum Villa",
+    "Walkthrough - Signature Tour",
+    "Walkthrough - Modern Exterior",
+    "Walkthrough - Luxury Interior",
+    "Walkthrough - Site Progress",
+  ];
+
   const videoProjects = projectVideos.map((video, index) => ({
     img: video,
-    title: `Project Walkthrough ${index + 1}`,
+    title: videoTitles[index] ?? `Walkthrough ${index + 1}`,
     location: "Pakistan",
     type: "Video",
   }));
@@ -116,13 +164,9 @@ function ProjectsPage() {
                 ) : (
                   <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105" />
                 )}
-                <span className="absolute right-3 top-3 rounded-sm bg-accent/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent-foreground">{p.type}</span>
               </div>
               <div className="p-5">
                 <h3 className="text-base font-semibold">{p.title}</h3>
-                <p className="mt-1.5 flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5 text-accent" /> {p.location}
-                </p>
               </div>
             </article>
           ))}

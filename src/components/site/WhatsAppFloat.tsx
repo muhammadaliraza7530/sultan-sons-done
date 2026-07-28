@@ -1,4 +1,4 @@
-const PHONE = "923044190190";
+const PHONE = "923277314000";
 const MESSAGE = "Hi Sultan Sons, I'd like to discuss a project.";
 const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent(MESSAGE)}`;
 

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 const villaSpanish = "/villa-spanish-bahria.jpg";
-const WHATSAPP = "https://wa.me/923044190190";
+const WHATSAPP = "https://wa.me/923277314000";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -32,7 +32,7 @@ function ContactPage() {
       <section className="mx-auto mt-16 mb-24 grid w-[min(1200px,calc(100%-2rem))] gap-10 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-4">
           {[
-            { Icon: Phone, label: "Call Us", value: "0304 4190190 · 0304 2828284", href: "tel:+923044190190" },
+            { Icon: Phone, label: "Call Us", value: "0327 7314000 · 0304 2828284", href: "tel:+923277314000" },
             { Icon: MessageCircle, label: "WhatsApp", value: "Chat with our team", href: WHATSAPP, external: true },
             { Icon: Mail, label: "Email", value: "sultansonseb@gmail.com", href: "mailto:sultansonseb@gmail.com" },
             { Icon: MapPin, label: "Office", value: "09,Jasmine, 1st Roundabout, Park View City Lahore" },

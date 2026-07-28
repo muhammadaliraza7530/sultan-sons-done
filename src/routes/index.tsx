@@ -29,7 +29,7 @@ import { WhyChooseCarousel } from "@/components/site/WhyChooseCarousel";
 import { BrandSection } from "@/components/site/BrandSection";
 import { TeamSection } from "@/components/site/TeamSection";
 
-const WHATSAPP = "https://wa.me/923044190190";
+const WHATSAPP = "https://wa.me/923277314000";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -460,7 +460,7 @@ function Index() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  0304 4190190 · Mon – Sat, 10 AM to 7 PM
+                  0327 7314000 · Mon – Sat, 10 AM to 7 PM
                 </li>
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -468,7 +468,7 @@ function Index() {
                    className="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-accent-foreground hover:bg-accent/90">
                   WhatsApp Now
                 </a>
-                <a href="tel:+923044190190"
+                <a href="tel:+923277314000"
                    className="inline-flex items-center justify-center gap-2 rounded-sm border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold uppercase tracking-wider hover:bg-primary-foreground/10">
                   Call Now
                 </a>

@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { Calculator, X, Phone, MessageCircle, Home, Hammer, Building2 } from "lucide-react";
 const logoAsset = "/logo.jpg";
-const PHONE_TEL = "tel:+923044190190";
-const WHATSAPP_NUM = "923044190190";
+const PHONE_TEL = "tel:+923277314000";
+const WHATSAPP_NUM = "923277314000";
 
 type PackageKey = "grey" | "finishing" | "turnkey";
 

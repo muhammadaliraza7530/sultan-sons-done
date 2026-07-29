@@ -21,7 +21,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 w-[min(1200px,calc(100%-2rem))] py-4 lg:flex lg:justify-between">
         <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Sultan Sons logo" width={44} height={44} decoding="async" className="h-11 w-11 shrink-0 object-contain" />
+          <img src={logo} alt="Sultan Sons logo" width={44} height={44} decoding="async" className="h-13 w-11 shrink-0 object-contain" />
           <span className="min-w-0 leading-tight">
             <span className="block truncate text-sm font-bold tracking-tight text-foreground">SULTAN SONS</span>
             <span className="block text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">Estate &amp; Builders</span>

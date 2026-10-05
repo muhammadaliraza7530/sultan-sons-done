@@ -5,7 +5,8 @@ function parseCountValue(value: string) {
   if (!match) return { target: 0, template: value, hasNumber: false };
   return {
     target: Number.parseInt(match[1], 10),
-    template: value.slice(0, match.index) + "__N__" + value.slice((match.index ?? 0) + match[1].length),
+    template:
+      value.slice(0, match.index) + "__N__" + value.slice((match.index ?? 0) + match[1].length),
     hasNumber: true,
   };
 }
@@ -16,17 +17,34 @@ function useInViewOnce<T extends HTMLElement>(threshold = 0.35) {
   useEffect(() => {
     const el = ref.current;
     if (!el || inView) return;
-    if (!("IntersectionObserver" in window)) { setInView(true); return; }
-    const io = new IntersectionObserver(([e]) => {
-      if (e?.isIntersecting) { setInView(true); io.disconnect(); }
-    }, { threshold });
+    if (!("IntersectionObserver" in window)) {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [inView, threshold]);
   return { ref, inView };
 }
 
-export function CountOnView({ value, className, threshold }: { value: string; className?: string; threshold?: number }) {
+export function CountOnView({
+  value,
+  className,
+  threshold,
+}: {
+  value: string;
+  className?: string;
+  threshold?: number;
+}) {
   const { ref, inView } = useInViewOnce<HTMLSpanElement>(threshold);
   const { target, template, hasNumber } = useMemo(() => parseCountValue(value), [value]);
   const [display, setDisplay] = useState(0);

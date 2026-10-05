@@ -27,4 +27,4 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
-"# sultan-sons-done" 
+  "# sultan-sons-done"

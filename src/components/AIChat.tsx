@@ -48,8 +48,7 @@ export function AIChat() {
         ...m,
         {
           role: "assistant",
-          content:
-            "Sorry, connection issue. Please try again or WhatsApp us on 0304-4190190.",
+          content: "Sorry, connection issue. Please try again or WhatsApp us on 0304-4190190.",
         },
       ]);
       console.error(e);

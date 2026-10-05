@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { GoogleGenAI } from "@google/genai";
 
 const SYSTEM_PROMPT = `You are the Sultan Sons Estate & Builders assistant — a warm, professional AI concierge for a premium Pakistani construction, architecture, interior design, renovation and real-estate company with over 10 years of experience.
 
@@ -7,6 +8,7 @@ About the company:
 - Services: Full-scale Construction, Architecture Design, Renovation, Interior Design, Construction Management, Real Estate Advisory, Cost Management
 - Phone / WhatsApp: 0327 7314000 (alt: 0304-2828284)
 - Email: sultansonseb@gmail.com
+- Office Address: Near 4th Roundabout 96 Broadway commercial Parkviewcitylahore
 - Coverage: Across Pakistan (Lahore, Islamabad, Karachi and beyond)
 
 Rules:
@@ -20,7 +22,9 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const body = (await request.json()) as { messages?: Array<{ role: string; content: string }> };
+        const body = (await request.json()) as {
+          messages?: Array<{ role: string; content: string }>;
+        };
         const messages = body.messages;
         if (!Array.isArray(messages)) {
           return new Response(JSON.stringify({ error: "messages required" }), {
@@ -29,38 +33,69 @@ export const Route = createFileRoute("/api/chat")({
           });
         }
 
-        const key = process.env.LOVABLE_API_KEY;
-        if (!key) {
-          return new Response(JSON.stringify({ error: "Missing LOVABLE_API_KEY" }), {
-            status: 500,
-            headers: { "Content-Type": "application/json" },
-          });
+        // 1. Try Gemini API if GEMINI_API_KEY is available
+        const geminiApiKey = process.env.GEMINI_API_KEY;
+        if (geminiApiKey) {
+          try {
+            const ai = new GoogleGenAI({ apiKey: geminiApiKey });
+            const contents = messages.map((m) => ({
+              role: m.role === "assistant" ? "model" : "user",
+              parts: [{ text: m.content }],
+            }));
+
+            const response = await ai.models.generateContent({
+              model: "gemini-2.5-flash",
+              config: {
+                systemInstruction: SYSTEM_PROMPT,
+              },
+              contents,
+            });
+
+            const reply =
+              response.text ??
+              "Welcome to Sultan Sons Estate & Builders. How may we assist you today?";
+            return new Response(JSON.stringify({ reply }), {
+              headers: { "Content-Type": "application/json" },
+            });
+          } catch (geminiError) {
+            console.error("Gemini API error:", geminiError);
+          }
         }
 
-        const upstream = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Lovable-API-Key": key,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "google/gemini-3.6-flash",
-            messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-          }),
-        });
+        // 2. Try Lovable API fallback if LOVABLE_API_KEY is set
+        const lovableKey = process.env.LOVABLE_API_KEY;
+        if (lovableKey) {
+          try {
+            const upstream = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Lovable-API-Key": lovableKey,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                model: "google/gemini-2.5-flash",
+                messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+              }),
+            });
 
-        if (!upstream.ok) {
-          const text = await upstream.text();
-          return new Response(JSON.stringify({ error: text }), {
-            status: upstream.status,
-            headers: { "Content-Type": "application/json" },
-          });
+            if (upstream.ok) {
+              const data = (await upstream.json()) as {
+                choices?: Array<{ message?: { content?: string } }>;
+              };
+              const reply =
+                data.choices?.[0]?.message?.content ?? "Welcome to Sultan Sons Estate & Builders.";
+              return new Response(JSON.stringify({ reply }), {
+                headers: { "Content-Type": "application/json" },
+              });
+            }
+          } catch (lovableError) {
+            console.error("Lovable gateway error:", lovableError);
+          }
         }
 
-        const data = (await upstream.json()) as {
-          choices?: Array<{ message?: { content?: string } }>;
-        };
-        const reply = data.choices?.[0]?.message?.content ?? "Sorry, I couldn't generate a reply.";
+        // 3. Fallback response when no keys configured or external call fails
+        const reply =
+          "Welcome to Sultan Sons Estate & Builders! For fast quotes, project consultations, or site visits, please connect directly with our team on WhatsApp at 0327 7314000 or call 0304 2828284.";
         return new Response(JSON.stringify({ reply }), {
           headers: { "Content-Type": "application/json" },
         });

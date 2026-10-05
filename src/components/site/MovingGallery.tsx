@@ -36,8 +36,11 @@ export function MovingGallery({ images }: { images: GalleryImage[] }) {
   }, []);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const el = ref.current; if (!el) return;
-    setDragging(true); draggingRef.current = true; paused.current = true;
+    const el = ref.current;
+    if (!el) return;
+    setDragging(true);
+    draggingRef.current = true;
+    paused.current = true;
     drag.current = { startX: e.clientX, startScroll: el.scrollLeft, moved: 0 };
     el.setPointerCapture(e.pointerId);
   };
@@ -47,11 +50,16 @@ export function MovingGallery({ images }: { images: GalleryImage[] }) {
     drag.current.moved = Math.max(drag.current.moved, Math.abs(dx));
     const half = ref.current.scrollWidth / 2;
     let next = drag.current.startScroll - dx * 1.6;
-    if (half) { while (next < 0) next += half; while (next >= half) next -= half; }
+    if (half) {
+      while (next < 0) next += half;
+      while (next >= half) next -= half;
+    }
     ref.current.scrollLeft = next;
   };
   const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    setDragging(false); draggingRef.current = false; paused.current = false;
+    setDragging(false);
+    draggingRef.current = false;
+    paused.current = false;
     ref.current?.releasePointerCapture(e.pointerId);
   };
 
@@ -79,9 +87,13 @@ export function MovingGallery({ images }: { images: GalleryImage[] }) {
         <div>
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-accent" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">Recent Work</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
+              Recent Work
+            </span>
           </div>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">On-site &amp; delivered</h2>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            On-site &amp; delivered
+          </h2>
         </div>
         <p className="hidden max-w-xs text-xs text-muted-foreground sm:block">
           Drag the reel to browse. Tap any image to view in full.
@@ -94,7 +106,9 @@ export function MovingGallery({ images }: { images: GalleryImage[] }) {
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         onMouseEnter={() => (paused.current = true)}
-        onMouseLeave={() => { if (!dragging) paused.current = false; }}
+        onMouseLeave={() => {
+          if (!dragging) paused.current = false;
+        }}
         className={`flex gap-4 overflow-x-auto py-7 select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-5 ${
           dragging ? "cursor-grabbing" : "cursor-grab"
         }`}
@@ -117,31 +131,66 @@ export function MovingGallery({ images }: { images: GalleryImage[] }) {
             />
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             <div className="pointer-events-none absolute left-2 top-2 flex items-center gap-1.5 rounded-md bg-background/85 px-2 py-1 shadow-md backdrop-blur-sm">
-              <img src={logo} alt="" aria-hidden loading="lazy" decoding="async" className="h-5 w-5 object-contain" />
-              <span className="text-[9px] font-black uppercase tracking-widest text-accent">Sultan Sons</span>
+              <img
+                src={logo}
+                alt=""
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+                className="h-5 w-5 object-contain"
+              />
+              <span className="text-[9px] font-black uppercase tracking-widest text-accent">
+                Sultan Sons
+              </span>
             </div>
           </button>
         ))}
       </div>
 
       {lightbox !== null && (
-        <div onClick={() => setLightbox(null)}
-             className="fixed inset-0 z-[95] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-magic-aperture">
-          <button aria-label="Close" onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
-                  className="absolute right-4 top-4 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent">
+        <div
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[95] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-magic-aperture"
+        >
+          <button
+            aria-label="Close"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox(null);
+            }}
+            className="absolute right-4 top-4 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent"
+          >
             <X className="h-5 w-5" />
           </button>
-          <button aria-label="Previous" onClick={(e) => { e.stopPropagation(); nav(-1); }}
-                  className="absolute left-2 sm:left-6 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent">
+          <button
+            aria-label="Previous"
+            onClick={(e) => {
+              e.stopPropagation();
+              nav(-1);
+            }}
+            className="absolute left-2 sm:left-6 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent"
+          >
             <ChevronLeft className="h-6 w-6" />
           </button>
-          <button aria-label="Next" onClick={(e) => { e.stopPropagation(); nav(1); }}
-                  className="absolute right-2 sm:right-6 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent">
+          <button
+            aria-label="Next"
+            onClick={(e) => {
+              e.stopPropagation();
+              nav(1);
+            }}
+            className="absolute right-2 sm:right-6 rounded-full border border-white/30 bg-black/50 p-2 text-white hover:border-accent hover:text-accent"
+          >
             <ChevronRight className="h-6 w-6" />
           </button>
-          <div className="relative max-h-[85vh] w-[min(1100px,95vw)]" onClick={(e) => e.stopPropagation()}>
-            <img src={images[lightbox].src} alt={images[lightbox].alt}
-                 className="mx-auto max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl animate-magic-pop" />
+          <div
+            className="relative max-h-[85vh] w-[min(1100px,95vw)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={images[lightbox].src}
+              alt={images[lightbox].alt}
+              className="mx-auto max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl animate-magic-pop"
+            />
             <p className="mt-3 text-center text-sm text-white/80">{images[lightbox].alt}</p>
           </div>
         </div>

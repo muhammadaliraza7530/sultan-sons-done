@@ -54,12 +54,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground"
           >
             Try again
           </button>
-          <a href="/" className="rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">
+          <a
+            href="/"
+            className="rounded-md border border-input bg-background px-4 py-2 text-sm font-medium"
+          >
             Go home
           </a>
         </div>
@@ -74,10 +80,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Sultan Sons Estate & Builders — Premium Construction & Real Estate in Pakistan" },
-      { name: "description", content: "Sultan Sons Estate & Builders — 10+ years of premium construction, architecture, interiors and real estate services across Pakistan." },
+      {
+        name: "description",
+        content:
+          "Sultan Sons Estate & Builders — 10+ years of premium construction, architecture, interiors and real estate services across Pakistan.",
+      },
       { name: "author", content: "Sultan Sons Estate & Builders" },
-      { property: "og:title", content: "Sultan Sons Estate & Builders — Premium Construction & Real Estate" },
-      { property: "og:description", content: "Contemporary architecture, luxury interiors and turnkey construction across Pakistan." },
+      {
+        property: "og:title",
+        content: "Sultan Sons Estate & Builders — Premium Construction & Real Estate",
+      },
+      {
+        property: "og:description",
+        content:
+          "Contemporary architecture, luxury interiors and turnkey construction across Pakistan.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -102,8 +119,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <head><HeadContent /></head>
-      <body>{children}<Scripts /></body>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
     </html>
   );
 }
@@ -125,12 +147,19 @@ function RootComponent() {
         const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
         if (visible > 0 && visible / Math.max(r.height, 1) > 0.25) next.add(el);
       });
-      lit.forEach((el) => { if (!next.has(el)) el.classList.remove("is-lit"); });
-      next.forEach((el) => { if (!lit.has(el)) el.classList.add("is-lit"); });
+      lit.forEach((el) => {
+        if (!next.has(el)) el.classList.remove("is-lit");
+      });
+      next.forEach((el) => {
+        if (!lit.has(el)) el.classList.add("is-lit");
+      });
       lit.clear();
       next.forEach((el) => lit.add(el));
     };
-    const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
     // Start only after the page has fully loaded + hydrated, so we never
     // mutate classNames while React is still hydrating.
     const begin = () => {
@@ -140,7 +169,9 @@ function RootComponent() {
       window.addEventListener("resize", onScroll);
     };
     let start = 0;
-    const kick = () => { start = window.setTimeout(begin, 800); };
+    const kick = () => {
+      start = window.setTimeout(begin, 800);
+    };
     if (document.readyState === "complete") kick();
     else window.addEventListener("load", kick, { once: true });
     return () => {
@@ -153,7 +184,6 @@ function RootComponent() {
       }
     };
   }, []);
-
 
   return (
     <QueryClientProvider client={queryClient}>
